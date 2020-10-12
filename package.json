@@ -1,0 +1,22 @@
+{
+  "name": "icecream",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/icecreamk/icecream.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/icecreamk/icecream/issues"
+  },
+  "homepage": "https://github.com/icecreamk/icecream#readme",
+  "devDependencies": {
+    "webpack-dev-server": "^3.11.0"
+  }
+}
