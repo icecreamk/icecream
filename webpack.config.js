@@ -1,4 +1,5 @@
 const path = require('path')
+const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
@@ -25,7 +26,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'icecream',
       template: './src/index.html'
-    })
+    }),
+    new webpack.HotModuleReplacementPlugin()
   ],
   devServer: {
     // color（CLI only） console中打印彩色日志 在命令行中使用 --color --progress
@@ -37,6 +39,7 @@ module.exports = {
     // URL的根目录。不设定则默认指向项目根目录。
     contentBase: path.join(__dirname, './dist'),
     historyApiFallback: true,
-    host: '0.0.0.0'
-  },
+    host: '0.0.0.0',
+    hot: true
+  }
 }
