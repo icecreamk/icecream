@@ -1,11 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {AppContainer} from 'react-hot-loader';
 import './index.css'
 
 import getRouter from './router/router'
 
-if (module.hot) {
-    module.hot.accept();
+function renderWithHotReload(RootElement) {
+    ReactDOM.render(
+        <AppContainer>
+            {RootElement}
+        </AppContainer>,
+        document.getElementById('root')
+    )
 }
 
-ReactDOM.render(getRouter(), document.getElementById('root'));
+/*初始化*/
+renderWithHotReload(getRouter());
+
+/*热更新*/
+if (module.hot) {
+    module.hot.accept('./router/router', () => {
+        const getRouter = require('./router/router').default;
+        console.log(getRouter)
+        renderWithHotReload(getRouter());
+    });
+}
