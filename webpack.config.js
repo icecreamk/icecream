@@ -11,7 +11,8 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        use: 'babel-loader',
+        // cacheDirectory是用来缓存编译结果，下次编译加速
+        use: 'babel-loader?cacheDirectory=true',
         exclude: /node_modules/
       },
       {
