@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import {AppContainer} from 'react-hot-loader';
 import './index.css'
 
-import getRouter from './router/router'
+import getRouter from 'router/router'
 
 function renderWithHotReload(RootElement) {
     ReactDOM.render(
@@ -19,9 +19,8 @@ renderWithHotReload(getRouter());
 
 /*热更新*/
 if (module.hot) {
-    module.hot.accept('./router/router', () => {
-        const getRouter = require('./router/router').default;
-        console.log(getRouter)
+    module.hot.accept('router/router', () => {
+        const getRouter = require('router/router').default;
         renderWithHotReload(getRouter());
     });
 }
