@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {increment, decrement, reset} from '../../redux/actions/counter';
+import './page1.css'
 
 class Page1 extends Component {
     render() {
         return (
-            <div>
+            <div className="page1">
                 <div>当前计数为{this.props.counter.count}</div>
                 <button onClick={() => this.props.increment()}>自增
                 </button>
