@@ -1,14 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {AppContainer} from 'react-hot-loader';
-import './index.css'
-
+import {Provider} from 'react-redux';
+import store from './redux/store';
 import getRouter from 'router/router'
+import './index.css'
 
 function renderWithHotReload(RootElement) {
     ReactDOM.render(
         <AppContainer>
-            {RootElement}
+            <Provider store={store}>
+                {RootElement}
+            </Provider>
         </AppContainer>,
         document.getElementById('root')
     )
