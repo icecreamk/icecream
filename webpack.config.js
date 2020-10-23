@@ -4,10 +4,13 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   devtool: 'inline-source-map',
-  entry: [
-    'react-hot-loader/patch',
-    path.join(__dirname, 'src/index.js')
-  ],
+  entry: {
+    app: [
+      'react-hot-loader/patch',
+      path.join(__dirname, 'src/index.js'),
+    ],
+    vendor: ['react', 'react-router-dom', 'redux', 'react-dom', 'react-redux'],
+  },
   output: {
     filename: '[name].[hash].js',
     chunkFilename: '[name].[chunkhash].js',
@@ -50,6 +53,18 @@ module.exports = {
     }),
     new webpack.HotModuleReplacementPlugin()
   ],
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          chunks: 'initial',
+          name: 'vendor',
+          test: 'vendor',
+          enforce: true
+        }
+      }
+    }
+  },
   devServer: {
     // color（CLI only） console中打印彩色日志 在命令行中使用 --color --progress
     // historyApiFallback 任意的404响应都被替代为index.html
