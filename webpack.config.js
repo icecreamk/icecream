@@ -9,7 +9,8 @@ module.exports = {
     path.join(__dirname, 'src/index.js')
   ],
   output: {
-    filename: 'main.js',
+    filename: 'bundle.js',
+    chunkFilename: '[name].js',
     path: path.resolve(__dirname, 'dist')
   },
   resolve: {
