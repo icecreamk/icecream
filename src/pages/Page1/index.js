@@ -9,7 +9,7 @@ class Page1 extends Component {
         return (
             <div className="page1">
                 <img src={img} alt=""/>
-                <div>当前计数为{this.props.counter.count}</div>
+                <div>当前计数为：{this.props.counter.count}</div>
                 <button onClick={() => this.props.increment()}>自增
                 </button>
                 <button onClick={() => this.props.decrement()}>自减

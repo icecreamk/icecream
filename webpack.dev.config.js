@@ -1,8 +1,10 @@
 const path = require('path')
+const {merge} = require('webpack-merge');
 const webpack = require('webpack')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-module.exports = {
+const commonConfig = require('./webpack.common.config.js');
+
+const devConfig = {
   devtool: 'inline-source-map',
   entry: {
     app: [
@@ -12,59 +14,19 @@ module.exports = {
     vendor: ['react', 'react-router-dom', 'redux', 'react-dom', 'react-redux'],
   },
   output: {
-    filename: '[name].[hash].js',
-    chunkFilename: '[name].[chunkhash].js',
-    path: path.join(__dirname, 'dist')
-  },
-  resolve: {
-    alias: {
-      pages: path.join(__dirname, 'src/pages'),
-      component: path.join(__dirname, 'src/component'),
-      router: path.join(__dirname, 'src/router')
-    }
+    filename: '[name].[hash].js'
   },
   module: {
     rules: [
       {
-        test: /\.js$/,
-        // cacheDirectory是用来缓存编译结果，下次编译加速
-        use: 'babel-loader?cacheDirectory=true',
-        exclude: /node_modules/
-      },
-      {
         test: /\.css$/,
         use: ['style-loader', 'css-loader']
-      },
-      {
-        test: /\.(png|jpg|gif)$/,
-        use: [{
-            loader: 'url-loader',
-            options: {
-                limit: 8192
-            }
-        }]
       }
     ]
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      title: 'icecream',
-      template: './src/index.html'
-    }),
     new webpack.HotModuleReplacementPlugin()
   ],
-  optimization: {
-    splitChunks: {
-      cacheGroups: {
-        vendor: {
-          chunks: 'initial',
-          name: 'vendor',
-          test: 'vendor',
-          enforce: true
-        }
-      }
-    }
-  },
   devServer: {
     // color（CLI only） console中打印彩色日志 在命令行中使用 --color --progress
     // historyApiFallback 任意的404响应都被替代为index.html
@@ -79,3 +41,5 @@ module.exports = {
     hot: true
   }
 }
+
+module.exports = merge(commonConfig, devConfig);
