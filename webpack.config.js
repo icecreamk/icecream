@@ -1,7 +1,9 @@
 const path = require('path')
 const webpack = require('webpack')
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
     mode: 'production',
@@ -13,6 +15,7 @@ module.exports = {
         vendor: ['react', 'react-router-dom', 'redux', 'react-dom', 'react-redux']
     },
     output: {
+      publicPath : '/',
       filename: '[name].[chunkhash].js',
       chunkFilename: '[name].[chunkhash].js',
       path: path.join(__dirname, './dist')
@@ -26,6 +29,9 @@ module.exports = {
             test: /\.css$/,
             use: ['style-loader', 'css-loader']
         }, {
+          test: /\.css$/i,
+          use: [MiniCssExtractPlugin.loader, 'css-loader'],
+        }, {
             test: /\.(png|jpg|gif)$/,
             use: [{
                 loader: 'url-loader',
@@ -36,6 +42,10 @@ module.exports = {
         }]
     },
     plugins: [
+      new MiniCssExtractPlugin(),
+      new CleanWebpackPlugin({
+        cleanOnceBeforeBuildPatterns: ['*.js', '*.html', '*.png'],
+      }),
       new HtmlWebpackPlugin({
           title: 'icecream',
           filename: 'index.html',
