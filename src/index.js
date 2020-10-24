@@ -5,6 +5,9 @@ import {Provider} from 'react-redux';
 import store from './redux/store';
 import getRouter from 'router/router'
 import './index.css'
+if (MOCK) {
+    require('./mock/mock.js');
+}
 
 function renderWithHotReload(RootElement) {
     ReactDOM.render(

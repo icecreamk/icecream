@@ -26,6 +26,9 @@ const devConfig = {
     ]
   },
   plugins: [
+    new webpack.DefinePlugin({
+      MOCK: true
+    }),
     new webpack.HotModuleReplacementPlugin()
   ],
   devServer: {
