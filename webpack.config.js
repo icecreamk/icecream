@@ -44,7 +44,7 @@ module.exports = {
     plugins: [
       new MiniCssExtractPlugin(),
       new CleanWebpackPlugin({
-        cleanOnceBeforeBuildPatterns: ['*.js', '*.html', '*.png'],
+        cleanOnceBeforeBuildPatterns: ['*.js', '*.html', '*.png', '*.css'],
       }),
       new HtmlWebpackPlugin({
           title: 'icecream',
