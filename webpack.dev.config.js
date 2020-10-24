@@ -21,7 +21,11 @@ const devConfig = {
     rules: [
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader', 'postcss-loader']
+        use: ['style-loader', { 
+            loader: 'css-loader', 
+            options: {modules: {localIdentName: '[local]-[hash:base64:5]'}
+          }
+        }, 'postcss-loader']
       }
     ]
   },
