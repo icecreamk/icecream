@@ -1,8 +1,10 @@
 const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 
 module.exports = {
+    mode: 'production',
     devtool: 'cheap-module-source-map',
     entry: {
         app: [
@@ -34,11 +36,17 @@ module.exports = {
         }]
     },
     plugins: [
-        new HtmlWebpackPlugin({
-            title: 'icecream',
-            filename: 'index.html',
-            template: path.join(__dirname, 'src/index.html')
-        })
+      new HtmlWebpackPlugin({
+          title: 'icecream',
+          filename: 'index.html',
+          template: path.join(__dirname, 'src/index.html')
+      }),
+      new UglifyJSPlugin(),
+      new webpack.DefinePlugin({
+        'process.env': {
+            'NODE_ENV': JSON.stringify('production')
+         }
+     })
     ],
     optimization: {
       splitChunks: {
