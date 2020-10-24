@@ -4,6 +4,7 @@ import Bundle from './Bundle';
 import Home from 'bundle-loader?lazy&name=home!pages/Home';
 import Page1 from 'bundle-loader?lazy&name=page1!pages/Page1/index';
 import UserInfo from 'bundle-loader?lazy&name=userinfo!pages/UserInfo/UserInfo';
+import NotFound from 'bundle-loader?lazy&name=notFound!pages/NotFound/NotFound';
 
 const Loading = function () {
     return <div>Loading...</div>
@@ -29,6 +30,7 @@ const getRouter = () => (
                 <Route exact path="/" component={createComponent(Home)}/>
                 <Route path="/page1" component={createComponent(Page1)}/>
                 <Route path="/userinfo" component={createComponent(UserInfo)}/>
+                <Route component={createComponent(NotFound)}/>
             </Switch>
         </div>
     </Router>

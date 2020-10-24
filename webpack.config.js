@@ -12,6 +12,7 @@ const publicConfig = {
     devtool: 'cheap-module-source-map',
     entry: {
         app: [
+          'babel-polyfill',
           path.join(__dirname, 'src/index.js')
         ],
         vendor: ['react', 'react-router-dom', 'redux', 'react-dom', 'react-redux']
