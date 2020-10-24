@@ -30,9 +30,6 @@ const devConfig = {
     ]
   },
   plugins: [
-    new webpack.DefinePlugin({
-      MOCK: true
-    }),
     new webpack.HotModuleReplacementPlugin()
   ],
   devServer: {
@@ -46,7 +43,10 @@ const devConfig = {
     contentBase: path.join(__dirname, './dist'),
     historyApiFallback: true,
     host: '0.0.0.0',
-    hot: true
+    hot: true,
+    proxy: {
+      "/api/*": "http://localhost:9000/$1"
+    }
   }
 }
 
